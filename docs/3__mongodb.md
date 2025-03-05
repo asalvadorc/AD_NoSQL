@@ -481,7 +481,7 @@ Es pot guardar qualsevol cadena amb caràcters de la codificació UTF-8
 **DATE**
 
 Es guarda data i hora, i internament es guarden en milisegons des de l'any
-inicial. No es guarda el ****_Time zone_ , és a dir,__ la desviació respecte a
+inicial. No es guarda el **_Time zone_** , és a dir, la desviació respecte a
 l'hora internacional.
 ```
 { x : ISODate("2022-01-16T11:15:27.471Z") }
@@ -1339,7 +1339,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
       ]  
 }
 ```
- ### $pull {.azul} 
+**$pull**{.azul} 
 
 Amb aquest modificador esborrarem els elements de l'array que coincidesquen
 amb una condició, estiguen en la posició que estiguem. Observeu com es pot
@@ -2342,7 +2342,7 @@ Amb aquest nom genèric ens referirem a tots els càlculs, expressions i més
 coses que podrem posar per a trasnsformar el que ja tenim. Com veiem, açò és
 molt més potent que la projecció normal.
 
-  * **Expressions matemàtiques** : Podrem aplicar fórmules per a sumar (**$add**), restar (**$subtract**), multiplicar (**$multiply**), dividir (**$divide**) i més coses (potència, arrel quadrada, valor absolut, mòdul, ...). Cada operació té el seu operador que serà una paraula precedida pel dòlar, i amb la sintaxi de JSON, on posarem els operands en un array. 
+  - **Expressions matemàtiques** : Podrem aplicar fórmules per a sumar (**$add**), restar (**$subtract**), multiplicar (**$multiply**), dividir (**$divide**) i més coses (potència, arrel quadrada, valor absolut, mòdul, ...). Cada operació té el seu operador que serà una paraula precedida pel dòlar, i amb la sintaxi de JSON, on posarem els operands en un array. 
 
 Per exemple, traurem títol del llibre, preu i preu en pessetes (multiplicant
 per 166.386)
@@ -2357,7 +2357,8 @@ per 166.386)
 { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23, "preu_pessetes" : 2866.83078 }  
 { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9, "preu_pessetes" : 2645.5374 }
 ```
-  * **Expressions de dates** : Ja veurem i ja podem anar intuint que moltes agregacions estaran basades en el temps, per a poder fer consultes de documents de la setmana passada, o el mes passat, ... Per a poder fer aquestes agregacions, hi ha un conjunt d'expressions que permeten extraure fàcilment d'una data el seu dia, mes, any, ... en forma de número
+ 
+ - **Expressions de dates** : Ja veurem i ja podem anar intuint que moltes agregacions estaran basades en el temps, per a poder fer consultes de documents de la setmana passada, o el mes passat, ... Per a poder fer aquestes agregacions, hi ha un conjunt d'expressions que permeten extraure fàcilment d'una data el seu dia, mes, any, ... en forma de número
 
 Són les expressions: **$year, $month, $week, $dayOfMonth, $DayOfWeek,
 $dayOfYear, $hour, $minute** i **$second**.
@@ -2374,11 +2375,12 @@ i mes:
 { "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z"), "año" : 2013, "mes" : 6 }  
 { "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z"), "año" : 2014, "mes" : 2 }
 ```
-  * **Expressions de strings** : Ens permeten manipular els strings per a extraure subcadenes, concatenar, passar a majúscules o minúscules. Aquestes són algunes de les funcions:
+ 
+ - **Expressions de strings** : Ens permeten manipular els strings per a extraure subcadenes, concatenar, passar a majúscules o minúscules. Aquestes són algunes de les funcions:
 
-    * **$substr : [exp , inici , llargària]** : extrau una subcadena del string del primer paràmetre, des de la posició que indica el segon paràmetre (o primer caràcter) i tants caràcters com el tercer paràmetre
-    * **$concat : [ exp1 , exp2 , ...]** : concatena les expressions que hi ha en l'array
-    * **$toLower : exp** i **$toUpper : exp** : converteixen l'expressió a majúscules i minúscules respectivament
+  >- **$substr : [exp , inici , llargària]** : extrau una subcadena del string del primer paràmetre, des de la posició que indica el segon paràmetre (o primer caràcter) i tants caràcters com el tercer paràmetre
+  >- **$concat : [ exp1 , exp2 , ...]** : concatena les expressions que hi ha en l'array
+  >- **$toLower : exp** i **$toUpper : exp** : converteixen l'expressió a majúscules i minúscules respectivament
 
 Per exemple, anem a traure el títol dels llibres amb l'autor entre parèntesis:
 ```

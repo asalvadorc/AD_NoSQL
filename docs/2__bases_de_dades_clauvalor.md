@@ -116,33 +116,78 @@ En la següent imatge es veu com sí que hem pogut connectar
 **Instal·lació en Windows de 64 bits**{.azul}
 
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
-preferiblement de 64 bits. També podrem trobar versions de 32 bits, però molt
-més antigues.
+preferiblement de 64 bits.
 
 El lloc on poder baixar els fitxers de Redis per a Windows de 64 bits és:
 
 <https://github.com/MSOpenTech/redis/releases>
 
-En el moment de fer aquestos apunts va per la versió 3.2.100, però les imatges
+En el moment de fer aquestos apunts va per la versió 3.0.504, però les imatges
 que van a continuació, corresponents a una versió anterior, són totalment
 equivalents:
 
-![](T8_3_4.png)
+![](redis_5.png)
 
 Ens baixem el zip, el descomprimim, i ja ho tindrem disponible (sense fer
 **make** ni res). Observeu com en la carpeta resultat de descomprimir ja tenim
 els executables **redis-server** i **redis-cli** que són els que ens
 interessen:
 
-![](T8_3_5.png)
+![](redis_6.png)
 
 Executem **redis-server** directament i ja el tindrem en marxa:
 
-![](T8_3_6.png)
+![](redis_7.png)
 
 Executem també el **redis-cli** i el resultat serà el mateix que en Linux.
 
-## 2.2 - Utilització de Redis
+##  2.2 - Entron gràfic: Redis Insight
+
+Com hem comprovat en el punt anterior, la connexió que fem des del client és a
+través de consola. Per tant haurem de posar comandos i ens contestarà la seua
+execució.
+
+Podem instal·lar-nos una aplicació gràfica que faça un poc més atractiva la
+presentació.
+
+La instal·lació d'aquesta eina és**totalment optativa** , no cal que la feu.
+De fet, ens els exemples que es mostraran en tot el tema només s'utilitzarà el
+mode consola.
+
+És completament independent del servidor, i podem instal·lar-la perfectament
+sense tenir el servidor, utilitzant-la aleshores per a connectar a un servidor
+remot.
+
+El podem baixar lliurement de la pàgina oficial
+[redis.io/insight](https://redis.io/insight/) on podrem comprovar que tenim per a totes
+les plataformes:
+
+![](redis_1.png)
+
+
+**Instal·lació en Windows**
+
+En Windows el que ens baixarem és un exe. L'executem (permetent l'execució
+quan ho pregunta Windows) i li podem donar a totes les opcions per defecte.
+
+Quan l'executem, ens eixirà la següent pantalla:
+
+![](redis_2.png)
+
+Podem comprovar que tenim el botó per a afegir una BD Redis (+ Add Redis database). Per a
+connectar al servidor local la conexió serà redis://default@127.0.0.1:6379. En la imatge
+s'ha fet el test de connexió.
+
+![](redis_3.png)
+
+Per a connectar a un remot, posarem la seua adreça
+
+![](redis_4.png)
+
+En aquesta imatge es veu com hem connectat perfectament als dos servidors. 
+
+
+## 2.3 - Utilització de Redis
 
 Anam a veure la utilització de Redis, Ens connectarem com a clients i
 intentarem fer operacions.
@@ -157,7 +202,7 @@ intentarem fer operacions.
 
 
 
-### 2.2.1 - Strings
+### 2.3.1 - Strings
 
 És el tipus de dades més senzill, més bàsic. Serà una cadena de caràcters de
 tipus _**binary**_**safe** en la qual normalment guardarem les habituals
@@ -498,7 +543,7 @@ Decrementa el valor de la clau el número d'unitat indicat en **decrement**.
     (integer) 6
 
 
-### 2.2.2 - Keys
+### 2.3.2 - Keys
 
 Ara anem a veure comandos que ens permeten treballar amb les claus, per a
 buscar-les, veure si existeixen, etc. No importarà el tipus de les claus (de
@@ -723,7 +768,7 @@ expirarà mai.
     127.0.0.1:6379> get compt1  
     "9"
 
-### 2.2.3 - Hash
+### 2.3.3 - Hash
 
 Ja havíem comentat que el tipus **Hash** és una espècie de registre, amb
 subcamps (en realitat hauríem de dir sub-claus). Pot tenir qualsevol número de
@@ -871,7 +916,7 @@ vist tots en el cas de **String**):
   * **hincrby** : incrementa el camp de la clau
 
 
-### 2.2.4 - List
+### 2.3.4 - List
 
 Les **Llistes** en **Redis** són llistes de Strings ordenades, on cada element
 està associat a un índex de la llista. Es poden recuperar els elements tant de
@@ -1228,7 +1273,7 @@ de final.
     2) "sisena"  
     3) "cinquena"  
 
-### 2.2.5 - Set
+### 2.3.5 - Set
 
 Els **Sets** de **Redis** són conjunts de valors de tipus String no ordenats.
 Podrem afegir, actualitzar i esborrar aquestos elements de forma còmoda i
@@ -1824,7 +1869,7 @@ Si l'element no existia, l'inserirà, assumint una puntuació inicial de 0.
     6) "5"
 
 
-## 2.3 - Connexió des de Kotlin
+## 2.4 - Connexió des de Kotlin
 
 La utilització des de Java és molt senzilla, i podrem utilitzar tots els
 comandos que hem vist.
