@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/AD_NoSQL/exercicis_mongo/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercicis - AD - Accés a Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis";
+        var mkdocs_page_input_path = "exercicis_mongo.md";
+        var mkdocs_page_url = "/AD_NoSQL/exercicis_mongo/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 5. BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_redis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-3">Exercici 3</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">FIREBASE</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/1__introducci_firebase/">4.1 - Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/2__creaci_duna_aplicaci/">4.2 - Creació d'una aplicació</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/3__realtime_database_rd/">4.3 - Realtime Database</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/4__cloud_firestore_cf/">4.4. - Cloud Firestore</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/5__cloud_storage/">4.5. - Cloud Storage (opcional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Accés a Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">MONGO</li>
+      <li class="breadcrumb-item active">Exercicis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h1>
+<h2 id="exercici-3">Exercici 3</h2>
+<p>Agafa l'estat actual de Bicicas de la següent adreça:</p>
+<p><a href="http://gestiona.bicicas.es/apps/apps.php">http://gestiona.bicicas.es/apps/apps.php</a></p>
+<p>En compte de copiar aquestes dades actuals en un fitxer i després analitzar el
+fitxer, analitzarem directament fent la petició a la pàgina del servidor
+d'aquesta manera:</p>
+<pre><code>    val url = URL("http://gestiona.bicicas.es/apps/apps.php")
+    val rd = url.openConnection().getInputStream().reader()
+</code></pre>
+<p>L'objecte <strong>rd</strong> és un Reader que directament el podem passar com a paràmetre
+del <strong>JSONTokener</strong> , vist en el Tema 3.</p>
+<p>Estudia el format JSON, per a poder agafar bé la informació de cada estació,
+tal i com vam veure en el Tema 3.</p>
+<p>En un paquet nou anomenat <strong>ExercicisMongo</strong> dins del projecte <strong>Tema7</strong>:</p>
+<ul>
+<li>Fes un programa anomenat <strong>T7Ex3_IntroduirBicicas</strong> (amb <strong>main</strong>) que introduesca en <strong>MongoDB</strong> cada estació com un document en una col·lecció anomenada <strong>bicicas</strong>.</li>
+<li>Fes un altre programa anomenat <strong>T7Ex3_</strong><strong>MostrarBicicas</strong> que agafe tots els documents de la col·lecció <strong>bicicas</strong> de la Base de Dades de MongoDb, que són totes les estacions, i traga la seua informació amb aquest aspecte (en la imatge només es mostren les 10 primeres, però han d'eixir totes)
+<div class="highlight"><pre><span></span><code>01.- UJI - FCHS (5/27)  
+02.- ESTACIÃ³N DE FERROCARRIL Y AUTOBUSES (11/28)  
+03.- COLÃ³N (9/16)  
+04.- PASEO BUENAVISTA-GRAO (4/13)  
+05.- HOSPITAL GENERAL (5/18)  
+06.- PLAZA DE LA LIBERTAD (0/12)  
+07.- PLAZA TEODORO IZQUIERDO (4/13)  
+08.- PLAZA PRIMER MOLÃ­ (6/13)  
+09.- PATRONAT DESPORTS (7/14)  
+10.- PLAZA DOCTOR MARAÃ±Ã³N (0/23)
+</code></pre></div></li>
+</ul>
+<!--
+## Exercici 7.5 (voluntari)
+
+Fes un programa **T7Ex5.kt** que per mig d'una interfície gràfica agafe els
+documents de Bicicas de l'exercici anterior:
+
+  * Que acomplisquen la condició configurada amb el l'operador de comparació seleccionat en el JList anomenat **comparacio** i el valor numèric introduït en el JTextField anomenat **quantitat**. Si aquest últim està en blanc, no ha d'haver cap criteri de selecció (s'han d'agafar tots els documents)
+  * Que estiguen ordenats pel camp seleccionat en el JList **ordenació** i amb el criteri ascendent o descendent triat en el JList **ascDesc**
+
+Pots intentar-lo amb els mètodes **find()** i **sort()** , o amb el mètode
+**aggregate()**.
+
+Aquest seria l'esquelet del programa:
+
+
+
+    import com.mongodb.MongoClient
+    import org.bson.Document
+    import java.awt.*
+    import javax.swing.*
+
+    class ConsultaAvançadaBicicas : JFrame() {
+
+        val comparacio = JList(arrayOf("<=","=",">="))
+        val quantitat = JTextField(10)
+        val ordenacio = JList(arrayOf("id","ocupados"))
+        val ascDesc = JList(arrayOf("Ascendent","Descentent"))
+
+        val llEstacions = JTextArea()
+
+        val con = MongoClient("localhost" , 27017)
+        val bd = con.getDatabase("test")
+
+        init {
+            defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+            setBounds(100, 100, 350, 350)
+            setLayout(GridLayout(1,2))
+
+            val panell1 = JPanel(GridLayout(2,1))
+            val panell1_1 = JPanel()
+            panell1_1.layout=BoxLayout(panell1_1,BoxLayout.Y_AXIS)
+            panell1_1.add(JLabel("       Comparació dels llocs ocupats"))
+            val panell1_1_1 = JPanel(FlowLayout())
+            panell1_1.add(panell1_1_1)
+
+            val panell1_2 = JPanel()
+            panell1_2.layout=BoxLayout(panell1_2,BoxLayout.Y_AXIS)
+            panell1_2.add(JLabel("              Ordenació"))
+            val panell1_2_1 = JPanel(FlowLayout())
+            panell1_2.add(panell1_2_1)
+
+            add(panell1)
+            panell1.add(panell1_1)
+            panell1.add(panell1_2)
+
+            val panell2 = JPanel(BorderLayout())
+            add(panell2)
+
+            comparacio.fixedCellWidth=100
+            val renderer = comparacio.getCellRenderer() as DefaultListCellRenderer
+            renderer.horizontalAlignment = JLabel.CENTER
+            val scrollComp = JScrollPane(comparacio)
+
+            panell1_1_1.add(scrollComp)
+            comparacio.selectedIndex=0
+            panell1_1_1.add(quantitat)
+
+            ordenacio.fixedCellWidth=100
+            val renderer1 = ordenacio.getCellRenderer() as DefaultListCellRenderer
+            renderer1.horizontalAlignment = JLabel.CENTER
+            val scrollOrd = JScrollPane(ordenacio)
+            panell1_2_1.add(scrollOrd)
+            ordenacio.selectedIndex=0
+
+            ascDesc.fixedCellWidth=100
+            val renderer2 = ascDesc.getCellRenderer() as DefaultListCellRenderer
+            renderer2.horizontalAlignment = JLabel.CENTER
+            val scrollAscDesc = JScrollPane(ascDesc)
+            panell1_2_1.add(scrollAscDesc)
+
+            llEstacions.setForeground(Color.blue)
+            val scroll = JScrollPane(llEstacions)
+            panell2.add(scroll)
+
+            setSize(600, 400)
+            setVisible(true)
+
+            // Quan canvien comparacio, quantitat, ordenacio i/o ascDesc és quan bisquem
+            comparacio.addListSelectionListener{ valorCanviat()}
+            quantitat.addActionListener(){ valorCanviat()}
+            ordenacio.addListSelectionListener{ valorCanviat()}
+            ascDesc.addListSelectionListener{ valorCanviat()}
+            ascDesc.selectedIndex=0
+
+        }
+
+        fun valorCanviat() {
+            // Ací és on heu de posar el codi per a seleccionar de MongoDB les estacions que acompleixen la condició i amb l'ordenació indicada
+            // Les heu de col·locar en el JTextArea llEstacions
+            // Els components que heu de comprovar són:
+            //   - comparació (el JList amb l'operacdor de comparació seleccionat)
+            //   - quantitat (el JTextField amb la quantitat que s'ha de comparar amb l'operador)
+            //   - ordenacio (el JList amb el camp pel qual s'ha d'ordenar)
+            //   - ascDesc (El JList amb el criteri d'ordenacoó, ascendent o descendent)
+            // Si no s'ha posat res en el JTextField quantitat, no ha d'haver condició de selecció, és a dir, s'han de seleccionar totes les estacions
+
+        }
+    }
+
+    fun main(args: Array<String>) {
+        EventQueue.invokeLater {
+            ConsultaAvançadaBicicas().isVisible = true
+        }
+    }
+
+I aquest seria un exemple d'execució, en el qual s'han triat els documents amb
+2 o menys llocs ocupats, i ordenats pel número de llocs ocupats de forma
+descendent
+
+![](T8_Ex5_1.png)
+-->
+
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3__mongodb/" class="btn btn-neutral float-left" title="3 - MongoDB"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../AD_Firebase/1__introducci_firebase/" class="btn btn-neutral float-right" title="4.1 - Introducció">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3__mongodb/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../AD_Firebase/1__introducci_firebase/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

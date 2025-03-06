@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/AD_NoSQL/exercicis_redis/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercicis - AD - Accés a Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis";
+        var mkdocs_page_input_path = "exercicis_redis.md";
+        var mkdocs_page_url = "/AD_NoSQL/exercicis_redis/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 5. BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-1">Exercici 1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-2">Exercici 2</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_mongo/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">FIREBASE</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/1__introducci_firebase/">4.1 - Introducció</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/2__creaci_duna_aplicaci/">4.2 - Creació d'una aplicació</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/3__realtime_database_rd/">4.3 - Realtime Database</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/4__cloud_firestore_cf/">4.4. - Cloud Firestore</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/5__cloud_storage/">4.5. - Cloud Storage (opcional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AD_Firebase/exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AD - Accés a Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">REDIS</li>
+      <li class="breadcrumb-item active">Exercicis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h1>
+<h2 id="exercici-1">Exercici 1</h2>
+<p>En un nou paquet anomenat <strong>ExercicisRedis</strong> dins del projecte <strong>Tema7</strong> , crea
+el fitxer Kotlin <strong>T7Ex1_ConsultarClaus.kt</strong> , que permeta consultar totes les
+claus guardades en el nostre servidor <strong>Redis</strong>.</p>
+<p>Ha de presentar totes les claus actuals en <strong>Redis</strong> i el seu tipus, però amb
+un número davant. Posteriorment ha de demanar un número per teclat, i
+presentar la clau i el valor corresponent al número introduït, fins introduir
+el 0. Observa que depenent del tipus de la clau s'haurà de fer d'una manera o
+una altra. En la imatge teniu un exemple de cada:
+<div class="highlight"><pre><span></span><code>1.- clau_1 (string)  
+2.- mes2 (string)  
+3.- empleat_1 (hash)  
+4.- mes1 (string)  
+5.- saludar (string)  
+6.- empleat_2 (hash)  
+7.- mes6 (string)  
+8.- mes5 (string)  
+9.- mes4 (string)  
+10.- mes3 (string)  
+11.- colors (set)  
+12.- mes7 (string)  
+13.- llista1 (list)  
+14.- clau_Java (string)  
+15.- lista111 (list)  
+16.- colors1 (set)  
+17.- colors2 (set)  
+18.- colors3 (set)  
+19.- text (string)  
+20.- colors4 (set)  
+21.- clau_4 (string)  
+22.- clau_2 (string)  
+23.- puntuacions (zset)  
+24.- compt3 (string)  
+25.- compt2 (string)  
+26.- compt1 (string)  
+27.- quatre (string)  
+28.- pi (string)  
+Introdueix un número (0 per a eixir)  
+4  
+mes1: gener  
+Introdueix un número (0 per a eixir)  
+6  
+empleat_2  
+    sou --&gt; 1500.0  
+    nom --&gt; Berta  
+Introdueix un número (0 per a eixir)  
+13  
+llista1  
+    primera  
+    sisena  
+    cinquena  
+Introdueix un número (0 per a eixir)  
+11  
+colors  
+    roig  
+    verd  
+    blau  
+Introdueix un número (0 per a eixir)  
+23  
+puntuacions  
+    Nom5 --&gt; 2.75  
+    Nom2 --&gt; 3.5  
+    Nom3 --&gt; 5.0  
+Introdueix un número (0 per a eixir)  
+0
+</code></pre></div></p>
+<h2 id="exercici-2">Exercici 2</h2>
+<p>Realitzar en el mateix paquet un altre programa, aquesta vegada gràfic, que
+ens diga el mateix, però d'una forma més atractiva.</p>
+<ul>
+<li>El programa s'ha de dir <strong>T7Ex2_ConsultaClausGrafica</strong>.</li>
+<li>Contindrà un <strong>JList</strong> on han d'aparéixer totes les claus, millor si estan ordenades alfabèticament. Recordeu que el <strong>JList</strong> és un poc complicat, que es basa en un <strong>DefaultListModel</strong> , i és a aquest a qui heu d'afegir els elements.</li>
+<li>Al costat ha d'haver un <strong>JTextField</strong> que diga de quin tipus és quan se seleccione un element del JList</li>
+<li>I també un <strong>JTextArea</strong> amb el seu valor (siga del tipus que siga)</li>
+</ul>
+<p>Aquest seria l'esquelet.</p>
+<pre><code>import javax.swing.JFrame
+import javax.swing.JLabel
+import javax.swing.JTextField
+import javax.swing.JTextArea
+import javax.swing.DefaultListModel
+import javax.swing.JList
+import javax.swing.JScrollPane
+import java.awt.FlowLayout
+import java.awt.Color
+import redis.clients.jedis.Jedis
+
+import java.awt.EventQueue
+
+class EstadisticaRD : JFrame() {
+
+    val etTipClau= JLabel("Tipus:")
+    val tipClau= JTextField(8)
+    val contClau = JTextArea(8,15)
+    val con = Jedis("localhost")
+    val listModel = DefaultListModel&lt;String&gt;()
+    val llClaus = JList(listModel)
+
+    init {
+        defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+        setBounds(100, 100, 450, 450)
+        setLayout(FlowLayout())
+
+
+        llClaus.setForeground(Color.blue)
+        val scroll = JScrollPane(llClaus)
+        llClaus.setVisibleRowCount(20)
+
+        val scroll2 = JScrollPane(contClau)
+
+        add(scroll)
+        add(etTipClau)
+        add(tipClau)
+        add(scroll2)
+
+        setSize(600, 400)
+        setVisible(true)
+
+        inicialitzar()
+
+        llClaus.addListSelectionListener{valorCanviat()}
+
+    }
+    fun inicialitzar(){
+
+    }
+
+    fun valorCanviat() {
+
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    EventQueue.invokeLater {
+        EstadisticaRD().isVisible = true
+    }
+}
+</code></pre>
+<p>I aquest el seu aspecte</p>
+<p><img alt="" src="../T8_Ex2_1.png" /></p>
+<!--
+## Exercici 7.3 (Redis) (voluntari)
+
+Realitzar un programa anomenat **T7Ex3_JocEndevinaNumero.kt** , que faça el
+joc d'endevinar un número del 1 al 100. Cada vegada que el jugador pose un
+número el programa ha de dir si el número a endevinar és major o menor que
+l'introduït, fins que es trobe.
+
+Posteriorment pregunta el nom i guarda'l amb la marca en un conjunt ordenat
+(**Sorted Set**) anomenat **joc_marques** , on utilitzarem com a valor el nom
+del jugador, i com a puntuació (**score**) que serveix per a ordenar, el
+temps. Com a complicació tindrem que en un conjunt ordenat (igual que en un
+conjunt) no es poden repetir els valors. Ha de ser de la següent manera:
+
+  * Medir el temps des de que comença la partida fins que es trobe el número. T'anirà bé la funció **System.currentTimeMillis()** , que dóna l'hora actual en milisegons. La diferència entre el primer moment i el segon, serà el número de milisegons que ha durat la partida.
+  * Primer guarda sense tenir en consideració que es puga repetir el nom del jugador.
+  * **(Voluntari)** Després millora'l, per a que si es posa un nom que ja existeix, li afegisca un número: **nom, nom_1, nom_2, ...**
+  * **(Voluntari)** Finalment, limita la llista de puntuacions a les 10 millors.
+
+-->
+
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2__bases_de_dades_clauvalor/" class="btn btn-neutral float-left" title="2 - Bases de Dades Clau-Valor (Redis)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3__mongodb/" class="btn btn-neutral float-right" title="3 - MongoDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2__bases_de_dades_clauvalor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3__mongodb/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

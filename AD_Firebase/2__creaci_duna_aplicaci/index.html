@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/AD_NoSQL/AD_Firebase/2__creaci_duna_aplicaci/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>4.2 - Creació d'una aplicació - AD - Accés a Dades</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+        <link href="../../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4.2 - Creaci\u00f3 d\u0027una aplicaci\u00f3";
+        var mkdocs_page_input_path = "AD_Firebase/2__creaci_duna_aplicaci.md";
+        var mkdocs_page_url = "/AD_NoSQL/AD_Firebase/2__creaci_duna_aplicaci/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 5. BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercicis_redis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../exercicis_mongo/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">FIREBASE</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci_firebase/">4.1 - Introducció</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4.2 - Creació d'una aplicació</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#421-utilitzacio-des-de-intellij">4.2.1 Utilització des de IntelliJ</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__realtime_database_rd/">4.3 - Realtime Database</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4__cloud_firestore_cf/">4.4. - Cloud Firestore</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5__cloud_storage/">4.5. - Cloud Storage (opcional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">AD - Accés a Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">FIREBASE</li>
+      <li class="breadcrumb-item active">4.2 - Creació d'una aplicació</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="42-creacio-duna-aplicacio">4.2 - Creació d'una aplicació</h1>
+<p>La Base de Dades, que hem quedat que poden ser un document únic JSON en el cas
+de Realtime Database, i tot un conjunt en el cas de Cloud Firestore, està
+associada a una aplicació. Crearem des de l'entorn de Firebase una nova
+aplicació, la referència de la qual és la que utilitzarem en l'aplicació web o
+aplicació mòbil. Així doncs, podem crear-nos unes quantes aplicacions
+Firebase, i en cadascuna guardarem una Base de Dades. Ens farà falta
+autenticar-nos amb un compte de Google. </p>
+<p>El procés de creació el farem des de l'entorn de firebase:
+<a href="http://www.firebase.com">www.firebase.com</a>.</p>
+<p>El següent vídeo mostra el procés de creació d'una aplicació:</p>
+<!--
+<iframe src="https://slides.com/aliciasalvador/t7_firebase_comencar/embed" width="576" height="420" title="Copy of T7_Firebase_Comencar" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+-->
+<iframe src="https://slides.com/aliciasalvador/deck/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<hr />
+<p><strong class="azul">Regles de seguretat</strong></p>
+<p>Inicialment triarem l'opció <em><strong>modo de prueba</strong></em> , en el
+qual tot el món pot accedir a les dades. Evidentment no es poden deixar
+aquestes regles de forma definitiva, però per a començar a provar, està bé. De
+fet, en l'última versió ho deixarà en mode de prova durant un mes. De tota
+manera, si ho vulguérem allargar, aniríem a la configuració dels <strong>rules</strong></p>
+<p><img alt="" src="../T7_2_1_1.png" /></p>
+<h2 id="421-utilitzacio-des-de-intellij">4.2.1 Utilització des de IntelliJ</h2>
+<p>Mirarem l'accés des de IntelliJ, que és l'entorn que utilitzem en el present
+mòdul.</p>
+<p>Per desenvolupar una aplicació a IntelliJ amb Kotlin que acceda a Firebase, una manera prou fàcil és utilitzar <strong>Maven</strong> per gestionar les dependències necessàries.
+Els passos i les dependències necessàries que s'han d'afegir al <strong>pom.xml</strong>:</p>
+<!--
+a) Configurar **Firebase BOM** (opcional):
+
+Si necessiteu utilitzar múltiples serveis de Firebase, podeu simplificar la gestió de versions utilitzant el Firebase BOM (Bill of Materials):
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-bom</artifactId>
+                <version>32.0.0</version> <!-- Última versión conocida --/>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+Amb el BOM, no cal especificar la versió per a les dependències del Firebase.
+
+-->
+
+<p>a) <strong>Repositori Maven de Google</strong>:</p>
+<p>Algunes dependències del Firebase poden no estar disponibles al repositori Maven Central. Assegureu-vos d'afegir el repositori de Google</p>
+<pre><code>&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;google&lt;/id&gt;
+        &lt;url&gt;https://maven.google.com/&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+</code></pre>
+<p>b) <strong>Afegeix Firebase Admin SDK</strong>. L'Admin SDK és la biblioteca principal que us permet interactuar amb els serveis de Firebase, com Realtime Database, Cloud Firestore, Authentication, entre d'altres.</p>
+<pre><code>&lt;dependency&gt;
+        &lt;groupId&gt;com.google.firebase&lt;/groupId&gt;
+        &lt;artifactId&gt;firebase-admin&lt;/artifactId&gt;
+        &lt;version&gt;9.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>c) <strong>Serveis Adicionals</strong> </p>
+<p>Si necessites interactuar amb serveis específics, com Firestore o Realtime Database, aquí tens les dependències corresponents:</p>
+<p><strong class="azul">Cloud Firestore</strong></p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.google.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;google-cloud-firestore&lt;/artifactId&gt;
+    &lt;version&gt;3.15.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+ &lt;dependency&gt;
+    &lt;groupId&gt;com.google.auth&lt;/groupId&gt;
+    &lt;artifactId&gt;google-auth-library-oauth2-http&lt;/artifactId&gt;
+    &lt;version&gt;1.27.0&lt;/version&gt; 
+ &lt;/dependency&gt;
+</code></pre>
+<p><strong class="azul">Realtime Database</strong></p>
+<p>La funcionalitat del Realtime Database està inclosa a l'Admin SDK, per la qual cosa no necessiteu afegir dependències addicionals. Simplement utilitza les classes proporcionades per firebase-admin.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Feu clic a <strong>Reload Maven</strong> Project per assegurar-vos que totes les dependències es descarguen correctament.</p>
+</div>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1__introducci_firebase/" class="btn btn-neutral float-left" title="4.1 - Introducció"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3__realtime_database_rd/" class="btn btn-neutral float-right" title="4.3 - Realtime Database">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1__introducci_firebase/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3__realtime_database_rd/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
