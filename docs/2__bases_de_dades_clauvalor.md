@@ -22,7 +22,7 @@ claus iguals. En Redis els valors poden ser de 5 tipus diferents:
   * **Conjunts****(Sets)** són conjunts desordenats de valors. No importa el seu ordre, i de fet serà impredecible l'ordre amb el qual els torna Redis. Per exemple: **colors -- > { "Blau" , "Verd" , "Roig" }******
   * **Conjunts Ordenats (Sorted Sets)** , que intenten reunir els avantatges dels conjunts, però que seran ordenats. Ja veurem la diferència entre llistes i conjunts ordenats.
 
-Algunes característiques de Redis són:
+Algunes **característiques** de Redis són:
 
   * És una arquitectura client-servidor
   * És extraordinàriament eficient quan es pot carregar tota en memòria, encara que si no pot carregar-la també funcionarà de forma molt ràpida. I a més manté una sincronització constant a disc per a fer les dades persistents. Aquesta tasca la fa en segon pla, de manera que no afecta al servei.
@@ -118,13 +118,10 @@ En la següent imatge es veu com sí que hem pogut connectar
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
 preferiblement de 64 bits.
 
-El lloc on poder baixar els fitxers de Redis per a Windows de 64 bits és:
+El lloc on poder baixar els fitxers de Redis per a Windows de 64 bits és: <https://github.com/MSOpenTech/redis/releases>
 
-<https://github.com/MSOpenTech/redis/releases>
-
-En el moment de fer aquestos apunts va per la versió 3.0.504, però les imatges
-que van a continuació, corresponents a una versió anterior, són totalment
-equivalents:
+!!!Tip "Versió"
+    En el moment de fer aquestos apunts, la darreara versió es la 3.0.504.
 
 ![](redis_5.png)
 
@@ -150,7 +147,7 @@ execució.
 Podem instal·lar-nos una aplicació gràfica que faça un poc més atractiva la
 presentació.
 
-La instal·lació d'aquesta eina és**totalment optativa** , no cal que la feu.
+La instal·lació d'aquesta eina és **totalment optativa**, no cal que la feu.
 De fet, ens els exemples que es mostraran en tot el tema només s'utilitzarà el
 mode consola.
 
@@ -175,17 +172,16 @@ Quan l'executem, ens eixirà la següent pantalla:
 ![](redis_2.png)
 
 Podem comprovar que tenim el botó per a afegir una BD Redis (+ Add Redis database). Per a
-connectar al servidor local la conexió serà redis://default@127.0.0.1:6379. En la imatge
+connectar al servidor local la conexió serà **redis://default@127.0.0.1:6379**. En la imatge
 s'ha fet el test de connexió.
 
 ![](redis_3.png)
 
-Per a connectar a un remot, posarem la seua adreça
+Per a connectar a un remot, posarem la seua adreça.
 
 ![](redis_4.png)
 
 En aquesta imatge es veu com hem connectat perfectament als dos servidors. 
-
 
 ## 2.3 - Utilització de Redis
 
@@ -202,7 +198,7 @@ intentarem fer operacions.
 
 
 
-### 2.3.1 - Strings
+### 2.2.1 - Strings
 
 És el tipus de dades més senzill, més bàsic. Serà una cadena de caràcters de
 tipus _**binary**_**safe** en la qual normalment guardarem les habituals
@@ -543,7 +539,7 @@ Decrementa el valor de la clau el número d'unitat indicat en **decrement**.
     (integer) 6
 
 
-### 2.3.2 - Keys
+### 2.2.2 - Keys
 
 Ara anem a veure comandos que ens permeten treballar amb les claus, per a
 buscar-les, veure si existeixen, etc. No importarà el tipus de les claus (de
@@ -768,7 +764,7 @@ expirarà mai.
     127.0.0.1:6379> get compt1  
     "9"
 
-### 2.3.3 - Hash
+### 2.2.3 - Hash
 
 Ja havíem comentat que el tipus **Hash** és una espècie de registre, amb
 subcamps (en realitat hauríem de dir sub-claus). Pot tenir qualsevol número de
@@ -916,24 +912,24 @@ vist tots en el cas de **String**):
   * **hincrby** : incrementa el camp de la clau
 
 
-### 2.3.4 - List
+### 2.2.4 - List
 
 Les **Llistes** en **Redis** són llistes de Strings ordenades, on cada element
 està associat a un índex de la llista. Es poden recuperar els elements tant de
 forma ordenada (per l'índex) com accedint directament a una posició.
 
-Els elements es poden afegir al principi, al final o també en una posició
+- Els elements es poden afegir al principi, al final o també en una posició
 determinada.
 
-La llista es crea en el moment en què s'insereix el primer element, i
+- La llista es crea en el moment en què s'insereix el primer element, i
 desapareix quan llevem l'últim element que quede.
 
-Estan molt ben optimitzades per a la inserció i per a la consulta.
+- Estan molt ben optimitzades per a la inserció i per a la consulta.
 
-Els comandos que afecten a les llistes comencen quasi tots per **L** , excepte
+- Els comandos que afecten a les llistes comencen quasi tots per **L** , excepte
 alguns que comencen per **R** indicant que fan l'operació per la dreta.
 
-Per cert, els valors dels elements es poden repetir.
+- Els valors dels elements es poden repetir.
 
 #### LPUSH {.azul}
 
@@ -1008,8 +1004,8 @@ Torna i elimina el primer element (el de més a l'esquerra).
 
 **<u>Exemples</u>**
 
-  127.0.0.1:6379> lpop llista1  
-  "cinquena"  
+    127.0.0.1:6379> lpop llista1  
+    "cinquena"  
     127.0.0.1:6379> lrange llista1 0 -1  
     1) "quarta"  
     2) "tercera"  
@@ -1273,7 +1269,7 @@ de final.
     2) "sisena"  
     3) "cinquena"  
 
-### 2.3.5 - Set
+### 2.2.5 - Set
 
 Els **Sets** de **Redis** són conjunts de valors de tipus String no ordenats.
 Podrem afegir, actualitzar i esborrar aquestos elements de forma còmoda i
@@ -1698,33 +1694,33 @@ també la puntuació de cada element
 
 **<u>Exemples</u>**
 
-  127.0.0.1:6379> zrange puntuacions 0 -1  
-  1) "Nom1"  
-  2) "Nom2"  
-  3) "Nom4"  
-  4) "Nom3"  
-  127.0.0.1:6379> zrange puntuacions 0 -1 withscores  
-  1) "Nom1"  
-  2) "1"  
-  3) "Nom2"  
-  4) "2"  
-  5) "Nom4"  
-  6) "4"  
-  7) "Nom3"  
-  8) "5"
+    127.0.0.1:6379> zrange puntuacions 0 -1  
+    1) "Nom1"  
+    2) "Nom2"  
+    3) "Nom4"  
+    4) "Nom3"  
+    127.0.0.1:6379> zrange puntuacions 0 -1 withscores  
+    1) "Nom1"  
+    2) "1"  
+    3) "Nom2"  
+    4) "2"  
+    5) "Nom4"  
+    6) "4"  
+    7) "Nom3"  
+    8) "5"
 
 Si vulguérem traure el conjunt en ordre invers de puntuació, utilitzaríem el
 comando **ZREVRANGE** (**reverse range**).
 
-  127.0.0.1:6379> zrevrange puntuacions 0 -1 withscores  
-  1) "Nom3"  
-  2) "5"  
-  3) "Nom4"  
-  4) "4"  
-  5) "Nom2"  
-  6) "2"  
-  7) "Nom1"  
-  8) "1"
+    127.0.0.1:6379> zrevrange puntuacions 0 -1 withscores  
+    1) "Nom3"  
+    2) "5"  
+    3) "Nom4"  
+    4) "4"  
+    5) "Nom2"  
+    6) "2"  
+    7) "Nom1"  
+    8) "1"
 
 
 #### ZRANGEBYSCORE {.azul}
