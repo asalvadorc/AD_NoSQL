@@ -3,7 +3,7 @@
 Segurament **MongoDB** és el més famós dels Sistemes Gestors de Bases de Dades
 **NoSQL**.
  
-El nom de **MongoDB** prové de la paraula anglesa _hu **mongo** us_, que
+El nom de **MongoDB** prové de la paraula anglesa _hu**mongo**us_, que
 significa enorme, que és el propòsit d'aquesta Base de Dades: guardar grans
 quantitats d'informació. És de codi obert i està programada en C++. El va
 crear l'empresa **10gen** (actualment **MongoDB Inc.**)
@@ -30,66 +30,66 @@ la informació.
 De la primera manera, guardant els llibres amb el seu autor, podríem tenir
 documents amb aquesta estructura, que es podrien guardar en una col·lecció
 anomenada **Llibres** :
-```
-  {  
-    _id:101,  
-    titol:"El secret de Khadrell",  
-    autor: {  
-    nom:"Pep",  
-    cognoms:"Castellano Puchol",  
-    any_naixement:1960  
-    },  
-    isbn:"84-95620-72-3"  
-  },  
-  {  
-    _id:102,  
-    titol:"L'Ombra del Vent",  
-    autor: {  
-    nom:"Carlos",  
-    cognoms:"Ruiz Zafon",  
-    pais:"Espanya"  
-    },  
-    pagines:490,  
-    editorial:"Planeta"  
-  }
-```
+
+      {  
+        _id:101,  
+        titol:"El secret de Khadrell",  
+        autor: {  
+        nom:"Pep",  
+        cognoms:"Castellano Puchol",  
+        any_naixement:1960  
+        },  
+        isbn:"84-95620-72-3"  
+      },  
+      {  
+        _id:102,  
+        titol:"L'Ombra del Vent",  
+        autor: {  
+        nom:"Carlos",  
+        cognoms:"Ruiz Zafon",  
+        pais:"Espanya"  
+        },  
+        pagines:490,  
+        editorial:"Planeta"  
+      }
+
 Observeu com els objectes no tenen per què tenir la mateixa estructura. La
 manera d'accedir al nom d'un autor seria aquesta: _objecte.autor.nom_
 
 Una manera alternativa de guardar la informació, com havíem comentat abans
 seria organitzar per autors, amb els seus llibres. D'aquesta manera podríem
 anar omplint la col·lecció **Autors** amb un o més documents d'aquest estil:
-```json
-  {  
-      _id: 201,  
-      nom:"Pep",  
-      cognoms:"Castellano Puchol",  
-      any_naixement:1960,  
-      llibres: [  
-      {  
-        titol:"El secret de Khadrell",  
-        isbn:"84-95620-72-3"  
-      },  
-      {  
-        titol:"Habitació 502",  
-        editorial:"Tabarca"  
-      }  
-    ]  
-  },  
-  {  
-      _id:202,  
-      nom:"Carlos",  
-      cognoms:"Ruiz Zafon",  
-      pais:"Espanya",  
-      llibres: [  
+
+    {  
+        _id: 201,  
+        nom:"Pep",  
+        cognoms:"Castellano Puchol",  
+        any_naixement:1960,  
+        llibres: [  
         {  
-          titol:"L'Ombra del Vent",  
-          pagines:490,  
-          editorial:"Planeta"  
+          titol:"El secret de Khadrell",  
+          isbn:"84-95620-72-3"  
+        },  
+        {  
+          titol:"Habitació 502",  
+          editorial:"Tabarca"  
         }  
-    ]  
-  }
-```
+      ]  
+    },  
+    {  
+        _id:202,  
+        nom:"Carlos",  
+        cognoms:"Ruiz Zafon",  
+        pais:"Espanya",  
+        llibres: [  
+          {  
+            titol:"L'Ombra del Vent",  
+            pagines:490,  
+            editorial:"Planeta"  
+          }  
+      ]  
+    }
+
 Observeu com per a un autor, ara tenim un array ( els claudàtors: **[ ]**) amb
 els seus llibres.
 
@@ -98,7 +98,204 @@ de l'accés que s'haja de fer a les dades. La millor serà segurament aquella
 que depenent dels accessos que s'hagen de fer, torne la informació de forma
 més ràpida.
 
-## 3.1 - Instal·lació de MongoDB
+## 3.1 - Estructura JSON
+
+Amb JSON podrem representar:
+
+  * **Valors** , de tipus **caràcter** (entre cometes dobles), **numèric** (sense cometes) , **booleà** (true o false) o **null**.
+  * **Parelles clau valor** , és a dir un nom simbòlic acompanyat d'un valor associat.. Es representen així: **"nom" : valor**
+  * **Objectes** , que és una col·lecció de membres, cadascú dels quals pot ser una parella clau valor, o altres objectes (fins i tot arrays): es representen entre claus, i amb els elements separats per comes: **{ "nom1" : "valor1" , "nom2": valor2 , valor 3 , ... }**
+  * **Arrays** , que són llistes d'elements. Els elements no tenen per què tenir la mateixa estructura, però nosaltres intentarem que sí que la tinguen per coherència. Cada element pot ser un valor , una parella clau valor, un objecte o un array.
+
+Veja'm algun exemples:
+
+    { "p1" : 2 , "p2" : 4 , "p3" : 6 , "p4" : 8 , "p5" : 10 }
+
+en aquest cas tenim un objecte, l'arrel, que té 5 membres, tots ells parelles
+clau-valor.
+
+    {  
+      "num": 1 ,  
+      "nom": "Andreu" ,  
+      "departament": 10 ,  
+      "edat": 32 ,  
+      "sou": 1000.0  
+    }
+
+ara un objecte, l'arrel, també amb 5 membres que són parelles clau-valor.
+Observeu com la clau sempre la posem entre cometes, i el valor quan és un
+string també, però quan és numèric, no.
+
+    { "empleat" :  
+      { "num": 1 ,  
+        "nom": "Andreu" ,  
+        "departament": 10 ,  
+        "edat": 32 ,  
+        "sou": 1000.0  
+      }  
+    }
+
+en aquest cas tenim un objecte, l'arrel que consta d'un únic objecte,
+**empleat** , el qual consta de 5 membres clau-valor.
+
+Mirem ara un exemple amb un array:
+
+    { "notes" :  
+      [ 5 , 7 , 8 , 7 ]  
+    }
+
+on tenim l'element arrel que consta d'un únic membre, notes, que és un array.
+
+També seria correcte d'aquesta manera, per veure que l'element arrel no té
+perquè ser un objecte, sinó també un array
+
+    [ 5 , 7 , 8 , 7 ]
+
+I ara un més complet amb la mateixa estructura que el fitxer XML que havíem
+vist en la pregunta 4. Tindrem un objecte arrel, amb només un objecte,
+**empresa** , que té un únic element **empleat** que és un array amb 4
+elements, cadascun dels empleats:
+
+    { "empresa":  
+      { "empleat":  
+        [ {  
+              "num": "1",  
+              "nom": "Andreu",  
+              "departament": "10",  
+              "edat": "32",  
+              "sou": "1000.0"  
+            },  
+            {  
+              "num": "2",  
+              "nom": "Bernat",  
+              "departament": "20",  
+              "edat": "28",  
+              "sou": "1200.0"  
+            },  
+            {  
+              "num": "3",  
+              "nom": "Clàudia",  
+              "departament": "10",  
+              "edat": "26",  
+              "sou": "1100.0"  
+            },  
+            {  
+              "num": "4",  
+              "nom": "Damià",  
+              "departament": "10",  
+              "edat": "40",  
+              "sou": "1500.0"  
+            }
+        ]  
+      }  
+    }
+
+Anem a veure un parell de casos més reals. Aquesta és la contestació que fa el
+WebService de **Bicicas** en sol·licitar l'estat actual de bicicletes en els
+diferents punts (en el moment de fer els apunts es consulta en l'adreça
+<http://gestiona.bicicas.es/apps/apps.php>):
+
+    [  
+      {"ocupacion":  
+        [  
+          {"id":"01","punto":"UJI -
+          FCHS","puestos":27,"ocupados":12,"latitud":"39.99533","longitud":"-0.06999",
+          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          {"id":"02","punto":"ESTACIÓN DE FERROCARRIL Y
+          AUTOBUSES","puestos":24,"ocupados":7,"latitud":"39.98765","longitud":"-0.05281",
+          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          {"id":"03","punto":"PLAZA DE
+          PESCADERÍA","puestos":28,"ocupados":4,"latitud":"39.98580","longitud":"-0.03798",
+          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          ...  
+        ]  
+      }  
+    ]
+
+Com podeu comprovar, l'arrel no és un objecte, sinó un **Array**. En l'array
+només ens interessa el primer element que és un objecte amb un únic membre,
+**ocupacion**(en l'exemple no hi ha més elements, però en poden haver més en
+un moment determinat, quan volen fer avisos). I **ocupacion és un array** ,
+amb **un objecte per cada estació de bicicas** , amb les parelles clau valor
+**id** , **punto** , **puestos** (les bicicletes que caben), **ocupados**
+(quantes bicicletes hi ha col·locades en aquest moment), **latitud** i
+**longitud** (les coordenades), ...
+
+!!!Note "Nota"
+    En realitat ens apareixerà tota la informació molt més apegada, perquè
+    realment està en una única línia.
+
+    Per a poder observar millor l'estructura podem utilitzar un **visor** de json.
+    Normalment el navegador Firefox els visualitza bé, encara que també depén de
+    la versió. Si tenim instal·lada una versió que admet la visualització de JSON,
+    ho intentarà interpretar, encara que segurament la millor manera de veure el
+    format JSON és,tiar les opcions **Dades sense processar -- > Format
+    d'impressió**, que és la que veiem a la dreta:
+
+      ![](T3_5_1_0_1.png) | ![](T3_5_1_0_2.png)  
+      ---|---  
+  
+    Si la versió nostra de Firefox no visualitza el format JSON, podem buscar un
+    visor dels molts que hi ha per internet. En la figura n'hem utilitzat un, i es
+    pot observar com facilita molt la lectura.
+
+      ![](T3_5_1_1.png)
+
+Un altre exemple. Un WebService de GeoNames (una Base de Dade geogràfica
+gratuïta i accessible a través d'Internet) ens proporciona informació dels
+llocs que troba dins d'un rectangle delimitat per un latitud al nord i al sud,
+i una longitud a l'esti a l'oest (en l'exemple: nord 40.01, sud 39.9, est 0.1
+i oest -0.1). Per exemple,
+[http://api.geonames.org/citiesJSON?north=40.01&south=39.99&east=0.01&west=-0.01&lang=ES&username=demo](https://maps.googleapis.com/maps/api/geocode/json?latlng=40,0)
+torna el següent:
+
+    
+    
+    {
+      "geonames": [
+        {
+          "lng": -0.04935,
+          "geonameId": 2519752,
+          "countrycode": "ES",
+          "name": "Castelló de la Plana",
+          "fclName": "city, village,...",
+          "toponymName": "Castelló de la Plana",
+          "fcodeName": "seat of a second-order administrative division",
+          "wikipedia": "en.wikipedia.org/wiki/Castell%C3%B3n_de_la_Plana",
+          "lat": 39.98567,
+          "fcl": "P",
+          "population": 180005,
+          "fcode": "PPLA2"
+        },
+        {
+          "lng": -0.06313,
+          "geonameId": 2521909,
+          "countrycode": "ES",
+          "name": "Almazora",
+          "fclName": "city, village,...",
+          "toponymName": "Almassora",
+          "fcodeName": "populated place",
+          "wikipedia": "en.wikipedia.org/wiki/Almassora",
+          "lat": 39.94729,
+          "fcl": "P",
+          "population": 24963,
+          "fcode": "PPL"
+        },
+        ...
+        ]
+    }
+
+A partir de l'arrel (que ara sí que és un objecte), tenim un membre:
+**geonames**, que és un array (un element per cada "lloc" trobat), on cada
+element té informació diversa, com el nom del lloc, les coordenades, la
+població, ...
+
+!!!Note "Nota"
+    De fa uns mesos que Google limita el servei anterior, i ha de ser amb un
+    usuari validat. No valdrà la pena, per al poc profit que li trauríem. Mostrem
+    en què consisteix el servei únicament a nivell il·lustratiu
+
+## 3.2 - Instal·lació de MongoDB
 
 Podrem instal·lar MongoDB en qualsevol plataforma. I fins i tot sense tenir
 permisos d'administrador, com veurem en el cas d'Ubuntu.
@@ -113,13 +310,13 @@ Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
 podem fer, com veurem i remarcarem a continuació.
 
-**Instal·lació del servidor**{.azul}
+**Instal·lació del servidor (Linux)**{.azul}
 
-De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú Products - > Comunity Edition ->Comunity Server
+De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
-en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
+el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , aquest fitxer és:
-**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.4.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
 Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
@@ -132,37 +329,31 @@ permís per crear aquest directori. Aleshores crearem un altre directori i en
 el moment d'arrancar el servidor, li especificarem aquest lloc.
 
 La manera d'arrancar el servidor serà:
-```
-<directori arrel MongoDB>/bin/mongod
-```
+
+    <directori arrel MongoDB>./bin/mongod
+
 Opcionalment li podem dir on està la Base de Dades (si no ho especifiquem
 assumirà que està en **/data/db**):
-```
-<directori arrel MongoDB>/bin/mongod --dbpath <directori de la BD>
-```
+
+    <directori arrel MongoDB>./bin/mongod --dbpath <directori de la BD>
+
 Resumint, i estant situats al directori on hem descomprimit MongoDB:
 
-* Si som administradors: 
-  >* Creem el directori de dades:
-```
-mkdir /data  
-mkdir /data/db
-```
-  > * Arranquem el servidor:
-  
-```
-./bin/mongod
-```
-* Si no som administradors: 
-  >* Creem el directori de dades:
-```
-mkdir data  
-mkdir data/db
-```
-  > * Arranquem el servidor:
-```
-./bin/mongod --dbpath ./data/db
-```
+* Creem el directori de dades:
+
+        mkdir /data  
+        mkdir /data/db
+
+* Si no som administradors, arranquem el servidor:
+      
+        ./bin/mongod --dbpath ./data/db
+
+* Si som administradors, arranquem el servidor:
+
+        ./bin/mongod
+
+
+
 La següent imatge il·lustra aquesta segona opció. Està per a una versió
 anterior de MongoDB, però és totalment equivalent:
 
@@ -173,13 +364,13 @@ anterior de MongoDB, però és totalment equivalent:
     Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que pararíem el servidor.
 
 
-**Instal·lació del client**{.azul}
+**Instal·lació del client MongoShell (Linux)**{.azul}
 
-De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú Products - > Tools ->MongoDB Shell
-i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
-en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
+De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú **Products - > Tools ->MongoDB Shell**
+i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions, i millor triar
+el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**, i aquest fitxer és:
-**<https://downloads.mongodb.com/compass/mongosh-2.3.6-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+**<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
 Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
@@ -187,114 +378,79 @@ instal·lació bàsica.
 Per a connectar un client, obrim una segona terminal i
 executem el client **mongosh** :
 
-```
-  <directori arrel MongoDB>/bin/mongosh
-```  
 
-```
-  ./bin/mongosh
-```
+    <directori arrel Mongosh>/bin/mongosh
+ 
+    ./bin/mongosh
+
 ![](T8_3_1_2.png)
 
-Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
-guardar un document i un altre per a recuperar-lo.
 
-Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
-i després l'operació que volem fer. Amb el següent:
-```
-> db.exemple.Insert( {msg:"Hola, què tal?"} )
-```
-Ens contestarà:
-```
-WriteResult({ "nInserted" : 1 })
-```
-Indicant que ha inserit un document en la col·lecció **exemple** (si no estava
-creada, la crearà).
-
-I amb el següent comando recuperem la informació:
-```
-> db.exemple.findOne()
-```
-Que ens tornarà:
-```
-{ "_id" : ObjectId("56cc130590d651d45ef3d3be"), "msg" : "Hola, què tal?" }
-```
-Tot ho fa en la mateixa terminal, i a cadascú de nosaltres ens donarà un
-número diferent en **ObjectId**. En la següent imatge es veuen les dues
-operacions:
-
-![](T8_3_1_3.png)
-
-En realitat estem connectats a una Base de Dades anomenada **test**. Podem
-crear i utilitzar més d'una Base de Dades, però en aquest curs tindrém més que
-suficient amb aquesta Base de Dades. Per a comprovar-ho podem executar la
-següent sentència, que ens torna el nom de la Base de Dades:
-```
-> db.getName()  
-test
-```
 ### Instal·lació en Windows
 
-No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
-Windows, depenent de si és de 32 o 64 bits la nostra versió, que resultarà ser
-un .msi directament executable. En el moment de fer aquestos apunts, el de la
-versió de 64 bits era el fitxer:
+**Instal·lació del servidor (Windows)**{.azul}
 
-<https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.6.2-signed.msi/download>
-<!--
-[mongodb-win32-x86_64-2008plus-
-ssl-3.6.2-signed.msi](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-
-win32-x86_64-2008plus-ssl-3.6.2-signed.msi/download)
--->
-Una vegada baixat, executem el fitxer. Haurem d'acceptar la llicència,
-instal·lar la versió completa, i acceptar quan Windows ens avise que un
-programa vol instal·lar software. El de sempre.
+No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
+Windows, que resultarà ser un .msi directament executable. En el moment de fer aquestos apunts, la versió de 64 bits és la 8.0.5:
+
+<https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.5-signed.msi>
+
 
 Com en el cas de Linux, abans d'executar el servidor haurem de tenir el
 directori creat. Per defecte el directori serà **\data\db**
 
 Aqueste serien les ordres per a crear el directori i després arrancar el
-servidor. Està per a una versió anterior, però seria totalment equivalent:
-```
-mkdir \data\db  
-C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe
-```
-En aquest a imatge s'observa que en intentar posar en marxa el servidor, el
-Firewall de Windows ho detecta, i sol·licita permís per posar-lo en marxa.
-Acceptem i prou:
+servidor.
+
+    mkdir \data\db  
+    C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe
+
+Hauria d'aparèixer la imatge següent
 
 ![](T8_3_1_11.png)
 
+!!!Note "Nota"
+    Si vas instal·lar MongoDB amb el MongoDB MSI Installer, normalment el servei ja estarà instal·lat i no caldrà executar-lo.
+
+**Instal·lació del client MongoShell (Windows)**{.azul}
+
 Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
-ja que si tanquem aquesta pararem el servidor. El programa és **mongo.exe** :
-```
-C:\Program Files\MongoDB\Server\3.2\bin\mongo.exe
-```
-![](T8_3_1_12.png)
+amb **mongosh.exe**, que és la interfície de línia d'ordres (CLI) oficial de MongoDB, utilitzada per interactuar amb la base de dades mitjançant ordres en JavaScript:
+
+Ens baixem la versió apropiada de MongoDB per a Windows 
+
+<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>
+
+!!!Tip "Mongo Compass"
+    També us podeu descarregar la versió **MongoDB Compass**, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat d'utilitzar la línia de comandos.
+
+    <https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe>
+
+**Probar el funcionament**{.azul}
 
 Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
 guardar un document i un altre per a reculerar-lo.
 
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el sgüent:
-```
-> db.exemple.InsertOne( {msg:"Hola, què tal?"} )
-```
+
+    db.exemple.insertOne( {msg:"Hola, què tal?"} )
+
 Ens contestarà:
-```
-WriteResult({ "nInserted" : 1 })
-```
+
+    WriteResult({ "nInserted" : 1 })
+
 Indicant que ha inserit un document en la col·lecció **exemple** (si no estava
 creada, la crearà).
 
 I amb el següent comando recuperem la informació:
-```
-> db.exemple.findOne()
-```
+
+      db.exemple.find()
+
 Que ens tornarà:
-```
-{ "_id" : ObjectId("56cc1acd73b559230de8f71b"), "msg" : "Hola, què tal?" }
-```
+
+    { "_id" : ObjectId("56cc1acd73b559230de8f71b"), "msg" : "Hola, què tal?" }
+
 Tot ho fa en la mateixa terminal, i a cadascú de nosaltres ens donarà un
 número diferent en **ObjectId**. En la següent imatge es veuen les dues
 operacions:
@@ -305,11 +461,11 @@ En realitat estem connectats a una Base de Dades anomenada **test**. Podem
 crear i utilitzar més d'una Base de Dades, però en aquest curs tindrés més que
 suficient amb aquesta Base de Dades. Per a comprovar-ho podem executar la
 següent sentència, que ens torna el nom de la Base de Dades:
-```
-> db.getName()  
-test
-```
-### 3.1.1 - Connexió al servidor de l'Institut
+
+    db.getName()  
+    test
+<!--
+### 3.2.1 - Connexió al servidor de l'Institut
 
 Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
 li res més. Per defecte s'ha connectat al servidor que tenim en la mateixa
@@ -319,9 +475,9 @@ Però en realitat li podem especificar l'adreça on està el servidor al qual
 volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
 el qual també tenim instal·lat MongoDB:
 
-```    
-    mongo  89.36.214.106
-```
+   
+    mongosh  89.36.214.106
+
 Podem connectar, però no podrem fer cap operació, perquè està habilitada
 l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
 instal·lat cadascú en la seua màquina.
@@ -342,7 +498,9 @@ A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
 
 ![](T8_3_1_1_2.png)
 
-## 3.2 - Utilització de MongoDB
+-->
+
+## 3.3 - Utilització de MongoDB
 
 Començarem la utilització de MongoDB des de la consola que havíem arrancat al
 final de la instal·lació.
@@ -427,7 +585,7 @@ restriccions:
   * Els valors són dels tipus que veurem en la pregunta 3.2.1
   * Un document guardat ha de contenir obligatòriament un camp anomenat **_id** , i que contindrà un valor únic en la col·lecció i servirà per a identificar-lo. Si en guardar un document no li hem posat camp **_id** , el generarà automàticament MongoDB.
 
-### 3.2.1 - Tipus de dades
+### 3.3.1 - Tipus de dades
 
 Els valors dels elements, és a dir de les parelles clau valor, poden ser d'uns
 quants tipus. Fem un ràpid repàs.
@@ -593,7 +751,7 @@ l'objecte de JSON). És un número long, és a dir que utilitza 24 bytes.
 Farem proves de la seua utilització en la seüent pregunta, en el moment
 d'inserir diferents documents.
 
-### 3.2.2 - Operacions bàsiques
+### 3.3.2 - Operacions bàsiques
 
 En aquest punt anem a veure les operacions més bàsiques, per a poder treballar
 sobre exemples pràctics, i així disposar ja d'unes dades inicials per a
@@ -812,7 +970,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 ```
 
 
-### 3.2.3 - Operacions d'actualització avançada
+### 3.3.3 - Operacions d'actualització avançada
 
 Al final de la pregunta anterior hem vist l'actualització de documents ja
 existents a la Base de Dades. Aquesta actualització la féiem modificant tot el
@@ -1449,7 +1607,7 @@ El nou document tindrà els camps:
   * Els camps de la condició, que en el nostre exemple és **{ nom:"Berta" }**
   * Els camps de l'actualització, que en el nostre exemple eren els cognoms
 
-## 3.3 - Consulta de documents
+## 3.4 - Consulta de documents
 
 En la pregunta anterior hem vist com introduir, eliminar i modificar
 documents. Les consultes de documents han segut molt senzilles, per a
@@ -1461,7 +1619,7 @@ En aquesta pregunta veurem en profunditat la consulta de documents.
   * Limitarem i ordenarem també els resultats
   * Fins i tot podrem elaborar més els resultats, agrupant els resultats, utilitzant funcions d'agregació (o millor dir operadors d'agregació) i donant-los un aspecte diferent
 
-### 3.3.1 - Paràmetres de les funcions find() i findOne()
+### 3.4.1 - Paràmetres de les funcions find() i findOne()
 
 Les funcions **find()** i **findOne()** són absolutament equivalents, amb
 l'única diferència que la primera torna tots els documents trobats, mentre que
@@ -1553,7 +1711,7 @@ o bonica (_pretty_), posarem aquesta funció al final: **find().pretty()**
 "cognoms" : "Bernat Cantero"  
 }
 ```
-### 3.3.2 - Operadors de les condicions
+### 3.4.2 - Operadors de les condicions
 
 Abans de començar aquesta pregunta, anem a agafar unes dades de prova, que
 estan en el fitxer **libros_ejemplo.json**
@@ -2241,7 +2399,7 @@ col·locar skip, limit i sort.
 { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
 ```
 
-### 3.3.3 - Agregació
+### 3.4.3 - Agregació
 
 L'agregació ens permetrà fer consultes molt avançades. És un procés un poc
 complicat però molt potent. Ens donarà una potència quasi com la del SQL quan
@@ -2555,7 +2713,7 @@ En l'exemple anterior, ara saltem els 3 primers:
 { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 ```
 
-## 3.4 - Connexió des de Kotlin i Exemples
+## 3.5 - Connexió des de Kotlin i Exemples
 
 Per a poder connectar des de Java o Kotlin ens sera suficient amb un driver,
 que haurem d'incorporar al projecte. En la següent pàgina podem trobar-lo, en
@@ -2825,7 +2983,7 @@ en la consola). Aquest serà el resultat:
 
 ![](T8_3_4_1.1.png)
 
-## 3.5 - Connexió des de Kotlin al servidor de l'Institut
+## 3.6 - Connexió des de Kotlin al servidor de l'Institut
 
 La connexió canvia si la fem al servidor de l'Institut, no per ser una
 direcció externa, sinó perquè cal la autenticació. Hem habilitat
